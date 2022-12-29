@@ -1,4 +1,5 @@
 #include "choosingstory.h"
+#include <QMessageBox>
 #include "mainwindow.h"
 #include "ui_choosingstory.h"
 #include "traum.h"
@@ -10,6 +11,7 @@ ChoosingStory::ChoosingStory(QWidget *parent) :
     ui(new Ui::ChoosingStory)
 {
     ui->setupUi(this);
+    showFullScreen();
 }
 
 ChoosingStory::~ChoosingStory()
@@ -30,6 +32,17 @@ void ChoosingStory::on_pushButton_clicked()
     traum -> show();
     hide();
 }
+
+void ChoosingStory::on_action_3_triggered()
+{
+   QMessageBox::information(this, "Информация о приложении", "Троечку(((\nДаша, напиши сюда что-то полезное");
+}
+
+void ChoosingStory::on_action_4_triggered()
+{
+    QWidget::close();
+}
+
 
 void ChoosingStory::on_pushButton_2_clicked()
 {

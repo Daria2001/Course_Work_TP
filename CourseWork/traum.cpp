@@ -3,12 +3,15 @@
 #include <QFile>
 #include "traum_end.h"
 #include "traum_follow.h"
+#include <QMessageBox>
+#include "mainwindow.h"
 
 
 Traum::Traum(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Traum)
 {
+
     QFile mFile("count.txt");
     mFile.open(QIODevice::ReadWrite);
     QString var_ = QByteArray(mFile.readAll());
@@ -18,6 +21,7 @@ Traum::Traum(QWidget *parent) :
     else
         count = var_.toInt();
     ui->setupUi(this);
+    showFullScreen();
     QFile file("../Data/Traum/" + QString::number(count) + ".txt");
     if(!file.open(QIODevice::ReadOnly))
         return;
@@ -155,3 +159,14 @@ void Traum::on_pushButton_3_clicked()
             hide();
         }
 }
+
+void Traum::on_action_3_triggered()
+{
+   QMessageBox::information(this, "Информация о приложении", "Троечку(((\nДаша, напиши сюда что-то полезное");
+}
+
+void Traum::on_action_4_triggered()
+{
+    QWidget::close();
+}
+

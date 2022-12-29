@@ -2,6 +2,7 @@
 #include "choosingstory.h"
 #include "./ui_mainwindow.h"
 #include <QMessageBox>
+#include <QFile>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -9,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    showFullScreen();
+    QFile mFile("count.txt");
+    QFile::remove("count.txt");
 }
 
 MainWindow::~MainWindow()

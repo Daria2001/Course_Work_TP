@@ -3,6 +3,8 @@
 #include <QFile>
 #include "cpm_end.h"
 #include "cpm_follow.h"
+#include <QMessageBox>
+#include "mainwindow.h"
 
 Cpm::Cpm(QWidget *parent) :
     QMainWindow(parent),
@@ -17,11 +19,12 @@ Cpm::Cpm(QWidget *parent) :
     else
         count = var_.toInt();
     ui->setupUi(this);
+    showFullScreen();
     QFile file("../Data/Техническая поддержка молящихся/" + QString::number(count) + ".txt");
     if(!file.open(QIODevice::ReadOnly))
         return;
     QString var = QByteArray(file.readAll());
-    ui->textBrowser_2->setText(var);
+    ui->textBrowser->setText(var);
     count++;
 
     QFile file1("../Data/Техническая поддержка молящихся/" + QString::number(count) + ".txt");
@@ -35,7 +38,7 @@ Cpm::Cpm(QWidget *parent) :
     if(!file2.open(QIODevice::ReadOnly))
         return;
     QString var2 = QByteArray(file2.readAll());
-    ui->pushButton_4->setText(var2);
+    ui->pushButton_3->setText(var2);
 
     file.close();
     file1.close();
@@ -59,48 +62,18 @@ void Cpm::on_pushButton_2_clicked()
         new1.setNum(count);
         mFile.write(new1);
         mFile.close();
-        Cpm_End *traum = new Cpm_End();
-        traum -> show();
+        Cpm_End *cpm = new Cpm_End();
+        cpm -> show();
         hide();
     }
-        else if (count == 12)
-            {
-                QFile::remove("count.txt");
-                QFile mFile("count.txt");
-                mFile.open(QIODevice::WriteOnly);
-                QByteArray new1;
-                count = 7;
-                new1.setNum(count);
-                mFile.write(new1);
-                mFile.close();
-                Cpm_Follow *cpm = new Cpm_Follow();
-                cpm -> show();
-                hide();
-            }
-            else {
-                    QFile::remove("count.txt");
-                    QFile mFile("count.txt");
-                    mFile.open(QIODevice::WriteOnly);
-                    QByteArray new1;
-                    count++;
-                    new1.setNum(count);
-                    mFile.write(new1);
-                    mFile.close();
-                    Cpm *cpm = new Cpm();
-                    cpm -> show();
-                    hide();}
-}
-
-
-void Cpm::on_pushButton_4_clicked()
-{
-    if (count == 15)
+    else
+    if (count == 12)
     {
         QFile::remove("count.txt");
         QFile mFile("count.txt");
         mFile.open(QIODevice::WriteOnly);
         QByteArray new1;
-        count = 17;
+        count = 7;
         new1.setNum(count);
         mFile.write(new1);
         mFile.close();
@@ -109,32 +82,78 @@ void Cpm::on_pushButton_4_clicked()
         hide();
     }
     else
-        if (count == 12)
-        {
-            QFile::remove("count.txt");
-            QFile mFile("count.txt");
-            mFile.open(QIODevice::WriteOnly);
-            QByteArray new1;
-            count = 8;
-            new1.setNum(count);
-            mFile.write(new1);
-            mFile.close();
-            Cpm_Follow *cpm = new Cpm_Follow();
-            cpm -> show();
-            hide();
-        }
-    else
-        {
-            QFile::remove("count.txt");
-            QFile mFile("count.txt");
-            mFile.open(QIODevice::WriteOnly);
-            QByteArray new1;
-            count += 7;
-            new1.setNum(count);
-            mFile.write(new1);
-            mFile.close();
-            Cpm *cpm = new Cpm();
-            cpm -> show();
-            hide();
-        }
+    {
+    QFile::remove("count.txt");
+    QFile mFile("count.txt");
+    mFile.open(QIODevice::WriteOnly);
+    QByteArray new1;
+    count++;
+    new1.setNum(count);
+    mFile.write(new1);
+    mFile.close();
+    Cpm *cpm = new Cpm();
+    cpm -> show();
+    hide();
+    }
 }
+
+
+void Cpm::on_pushButton_3_clicked()
+{
+    if (count == 6)
+    {
+        QFile::remove("count.txt");
+        QFile mFile("count.txt");
+        mFile.open(QIODevice::WriteOnly);
+        QByteArray new1;
+        count = 13;
+        new1.setNum(count);
+        mFile.write(new1);
+        mFile.close();
+        Cpm_Follow *cpm = new Cpm_Follow();
+        cpm -> show();
+        hide();
+    }
+    else
+    if (count == 12)
+    {
+        QFile::remove("count.txt");
+        QFile mFile("count.txt");
+        mFile.open(QIODevice::WriteOnly);
+        QByteArray new1;
+        count = 8;
+        new1.setNum(count);
+        mFile.write(new1);
+        mFile.close();
+        Cpm_Follow *cpm = new Cpm_Follow();
+        cpm -> show();
+        hide();
+    }
+    else
+    {
+    QFile::remove("count.txt");
+    QFile mFile("count.txt");
+    mFile.open(QIODevice::WriteOnly);
+    QByteArray new1;
+    count += 7;
+    new1.setNum(count);
+    mFile.write(new1);
+    mFile.close();
+    Cpm *cpm = new Cpm();
+    cpm -> show();
+    hide();
+    }
+
+
+}
+
+void Cpm::on_action_3_triggered()
+{
+   QMessageBox::information(this, "Информация о приложении", "Троечку(((\nДаша, напиши сюда что-то полезное");
+}
+
+void Cpm::on_action_4_triggered()
+{
+    QWidget::close();
+}
+
