@@ -115,10 +115,12 @@
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>...</string>
+     <string>Панель инструментов</string>
     </property>
     <addaction name="separator"/>
     <addaction name="separator"/>
+    <addaction name="action"/>
+    <addaction name="action_5"/>
     <addaction name="action_3"/>
     <addaction name="action_4"/>
    </widget>
@@ -133,6 +135,19 @@
   <action name="action_4">
    <property name="text">
     <string>Выход</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>Главное меню</string>
+   </property>
+   <property name="toolTip">
+    <string>Главное меню</string>
+   </property>
+  </action>
+  <action name="action_5">
+   <property name="text">
+    <string>Помощь</string>
    </property>
   </action>
  </widget>
